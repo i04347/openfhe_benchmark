@@ -36,9 +36,19 @@
 #include "math/math-hal.h"
 #include "utils/serializable.h"
 
+#include <chrono>
 #include <string>
 #include <utility>
 #include <vector>
+
+using namespace std::chrono;
+inline double get_time_msec(void)
+{
+    return static_cast<double>(duration_cast<nanoseconds>(
+                                   steady_clock::now().time_since_epoch())
+                                   .count()) /
+           1000000;
+}
 
 namespace lbcrypto {
 /**
